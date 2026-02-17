@@ -149,11 +149,6 @@ def crop_plane_to_alpha_boundary(obj, subdivisions=10, alpha_threshold=0.01):
     bmesh.ops.delete(bm, geom=faces_to_delete, context='FACES')
     bmesh.update_edit_mesh(obj.data)
 
-
-    faces_to_delete = [f for f in bm.faces if is_face_transparent(f, uv_layer)]
-    bmesh.ops.delete(bm, geom=faces_to_delete, context='FACES')
-    bmesh.update_edit_mesh(obj.data)
-
     boundary_verts = [
         v for v in bm.verts
         if any(e.is_boundary for e in v.link_edges)
